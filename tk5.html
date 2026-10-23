@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK5 - Accordion đơn giản</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #4338ca;
+            text-align: center;
+        }
+
+        .accordion {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .accordion-title {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            background: #e0e7ff;
+            color: #1e3a8a;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .accordion-title:hover {
+            background: #c7d2fe;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            background: white;
+        }
+
+        .accordion-content p {
+            padding: 18px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .accordion-content.open {
+            max-height: 200px;
+        }
+
+        .back {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            color: #4338ca;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>TK5 - Accordion đơn giản</h1>
+
+        <div class="accordion">
+            <button class="accordion-title">
+                Accordion là gì? +
+            </button>
+            <div class="accordion-content">
+                <p>
+                    Accordion là thành phần giao diện cho phép
+                    người dùng bấm vào tiêu đề để mở hoặc thu gọn
+                    nội dung bên dưới.
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-title">
+                Accordion dùng để làm gì? +
+            </button>
+            <div class="accordion-content">
+                <p>
+                    Accordion giúp tiết kiệm không gian trang web,
+                    thường được dùng trong phần câu hỏi thường gặp
+                    hoặc các mục thông tin chi tiết.
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-title">
+                Công nghệ sử dụng là gì? +
+            </button>
+            <div class="accordion-content">
+                <p>
+                    HTML tạo cấu trúc, CSS tạo giao diện và hiệu ứng,
+                    JavaScript xử lý thao tác mở hoặc đóng nội dung.
+                </p>
+            </div>
+        </div>
+
+        <a class="back" href="bt39.html">
+            ← Quay về trang chủ
+        </a>
+    </div>
+
+    <script>
+        const titles = document.querySelectorAll(".accordion-title");
+
+        titles.forEach(function(title) {
+            title.addEventListener("click", function() {
+                const content = title.nextElementSibling;
+                content.classList.toggle("open");
+
+                if (content.classList.contains("open")) {
+                    title.textContent =
+                        title.textContent.replace("+", "−");
+                } else {
+                    title.textContent =
+                        title.textContent.replace("−", "+");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

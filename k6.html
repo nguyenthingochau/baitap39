@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K6 - Xử lý sự kiện bàn phím</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #khung {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 25px auto;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #khoi {
+            width: 100px;
+            height: 60px;
+            background-color: #4f46e5;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 20px;
+        }
+
+        p {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>K6 - Xử lý sự kiện bàn phím</h1>
+
+    <p>Nhấn phím ↑ để di chuyển lên, phím ↓ để di chuyển xuống.</p>
+
+    <div id="khung">
+        <div id="khoi">Di chuyển</div>
+    </div>
+
+    <p id="thongBao">Vị trí hiện tại: 20px</p>
+
+    <script>
+       
+        let khoi = document.getElementById("khoi");
+        let thongBao = document.getElementById("thongBao");
+
+        
+        let viTri = 20;
+
+        
+        let buocDiChuyen = 10;
+        let chieuCaoKhoi = 60;
+        let chieuCaoKhung = 400;
+
+        document.addEventListener("keydown", function(event) {
+
+            
+            if (event.key === "ArrowUp") {
+                viTri = viTri - buocDiChuyen;
+            }
+
+            
+            else if (event.key === "ArrowDown") {
+                viTri = viTri + buocDiChuyen;
+            }
+
+            let viTriToiDa = chieuCaoKhung - chieuCaoKhoi;
+
+            if (viTri < 0) {
+                viTri = 0;
+            }
+
+            if (viTri > viTriToiDa) {
+                viTri = viTriToiDa;
+            }
+
+            khoi.style.top = viTri + "px";
+
+            
+            thongBao.textContent =
+                "Vị trí hiện tại: " + viTri + "px";
+        });
+    </script>
+</body>
+</html>

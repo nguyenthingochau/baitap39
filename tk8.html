@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK8 - Chuyển Hex sang RGB</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #00000015;
+        }
+
+        h1 {
+            color: #4338ca;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            color: white;
+            background: #4338ca;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e0e7ff;
+            border-radius: 6px;
+            overflow-wrap: anywhere;
+        }
+
+        #preview {
+            height: 80px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        a {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            color: #4338ca;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Chuyển đổi Hex sang RGB</h1>
+
+        <label for="hex">Nhập mã màu Hex:</label>
+        <input id="hex" type="text" value="#FF0000"
+               placeholder="Ví dụ: #FF0000">
+
+        <button onclick="convertColor()">
+            Chuyển đổi
+        </button>
+
+        <div id="result">
+            Kết quả sẽ hiển thị ở đây.
+        </div>
+
+        <div id="preview"></div>
+
+        <a href="bt39.html">← Quay về trang chủ</a>
+    </div>
+
+    <script>
+        function convertColor() {
+            let hex = document.getElementById("hex").value.trim();
+
+            
+            if (hex.startsWith("#")) {
+                hex = hex.slice(1);
+            }
+
+            
+            if (!/^[0-9A-Fa-f]{6}$/.test(hex)) {
+                document.getElementById("result").textContent =
+                    "Mã màu không hợp lệ! Hãy nhập ví dụ #FF0000.";
+                document.getElementById("preview").style.backgroundColor =
+                    "transparent";
+                return;
+            }
+
+            const r = parseInt(hex.slice(0, 2), 16);
+            const g = parseInt(hex.slice(2, 4), 16);
+            const b = parseInt(hex.slice(4, 6), 16);
+
+            const rgb = `rgb(${r}, ${g}, ${b})`;
+
+            document.getElementById("result").textContent =
+                "Kết quả: " + rgb;
+
+            document.getElementById("preview").style.backgroundColor = rgb;
+        }
+
+        convertColor();
+    </script>
+</body>
+</html>

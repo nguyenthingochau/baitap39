@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK7 - Tạo chuỗi ngẫu nhiên</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px #00000015;
+        }
+
+        h1 {
+            color: #4338ca;
+        }
+
+        #password {
+            padding: 15px;
+            margin: 20px 0;
+            background: #eef2ff;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #4338ca;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #3730a3;
+        }
+
+        a {
+            display: block;
+            margin-top: 25px;
+            color: #4338ca;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tạo mật khẩu ngẫu nhiên</h1>
+
+        <p>Mật khẩu gồm 8 ký tự, có chữ thường và chữ số.</p>
+
+        <div id="password">Nhấn nút để tạo mật khẩu</div>
+
+        <button onclick="generatePassword()">
+            Tạo mật khẩu
+        </button>
+
+        <a href="bt39.html">← Quay về trang chủ</a>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const letters = "abcdefghijklmnopqrstuvwxyz";
+            const numbers = "0123456789";
+            const allChars = letters + numbers;
+
+            let password = "";
+
+            
+            password += letters[
+                Math.floor(Math.random() * letters.length)
+            ];
+
+            password += numbers[
+                Math.floor(Math.random() * numbers.length)
+            ];
+
+            
+            for (let i = 0; i < 6; i++) {
+                password += allChars[
+                    Math.floor(Math.random() * allChars.length)
+                ];
+            }
+
+            
+            password = password
+                .split("")
+                .sort(() => Math.random() - 0.5)
+                .join("");
+
+            document.getElementById("password").textContent =
+                password;
+        }
+    </script>
+</body>
+</html>
